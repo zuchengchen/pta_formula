@@ -2,7 +2,7 @@ using Distributed
 cpuNum = length(Sys.cpu_info()) 
 # number of cpu cores
 
-addprocs(cpuNum - 2)
+addprocs(cpuNum - 10)
 # using all cpu cores
 
 @everywhere using HCubature
@@ -82,7 +82,7 @@ function saveOnePair(polar, xi, L1, L2)
     nmode = 50 
     fmin = 2.774455633345974e-09
     fmax = nmode*fmin
-    fs = range(fmin, fmax, length=3nmode)
+    fs = range(fmin, fmax, length=nmode)
     file = string("backup/", polar, "_", xi, "_", L1, "_", L2, ".txt")
     
     yr = 365.25 * 24.0 * 3600.0
@@ -101,7 +101,8 @@ end
 function saveAllPair(polar)
     for i in 1:size(M2Data)[1]
         xi, L1, L2 = M2Data[i,:]
-        @time saveOnePair(polar, xi, L1, L2)
+        @time saveOnePair(polar, xi, L1, L2) 
+        flush(stdout)
     end
 end
 
