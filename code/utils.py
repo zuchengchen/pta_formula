@@ -199,8 +199,20 @@ class JumpProposal(object):
         lqxy = 0
 
         # draw parameter from signal model
-        idx = self.pnames.index('log10_A_gw')
-        q[idx] = np.random.uniform(-18, -11)
+        idx = self.pnames.index('log10_A_TT')
+        q[idx] = np.random.uniform(-30, -8)
+        
+        # draw parameter from signal model
+        idx = self.pnames.index('log10_A_ST')
+        q[idx] = np.random.uniform(-30, -8)
+        
+        # draw parameter from signal model
+        idx = self.pnames.index('log10_A_SL')
+        q[idx] = np.random.uniform(-30, -8)
+        
+        # draw parameter from signal model
+        idx = self.pnames.index('log10_A_VL')
+        q[idx] = np.random.uniform(-30, -8)
 
         return q, 0
 

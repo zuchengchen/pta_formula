@@ -23,14 +23,14 @@ from omegagw_funcs import STT, SGeneral, SInflation
 logA_min, logA_max = -20, -10
 
 @signal_base.function
-def GWTT(f, log10_A, k):
+def GWTT(f, log10_A, kappa):
     df = np.diff(np.concatenate((np.array([0]), f[::2])))
-    return STT(f, 10**log10_A, k) * np.repeat(df, 2)
+    return STT(f, 10**log10_A, kappa) * np.repeat(df, 2)
 
 @signal_base.function
-def GWGeneral(f, log10_A, k):
+def GWGeneral(f, log10_A, kappa):
     df = np.diff(np.concatenate((np.array([0]), f[::2])))
-    return SGeneral(f, 10**log10_A, k) * np.repeat(df, 2)
+    return SGeneral(f, 10**log10_A, kappa) * np.repeat(df, 2)
 
 @signal_base.function
 def GWInflation(f, log10_A):
@@ -129,6 +129,7 @@ def common_red_noise_block(psd='inflation',
                            Tspan=None, 
                            orf="TT",
                            name=None,
+                           kappa_val=None,
                            logA_min=-30, 
                            logA_max=-8):
     """
@@ -160,12 +161,23 @@ def common_red_noise_block(psd='inflation',
 
     if name==None: 
         name = orf
-        
+    
     Agw_name = 'log10_A_{}'.format(name)
     if prior == 'uniform':  
         log10_Agw = parameter.LinearExp(logA_min, logA_max)(Agw_name)
     elif prior == 'log-uniform':
-        log10_Agw = parameter.Uniform(logA_min, logA_max)(Agw_name)        
+        log10_Agw = parameter.Uniform(logA_min, logA_max)(Agw_name)   
+        
+        
+    if psd in ['SMBH-TT', 'SMBH-General']:
+        kappa_name = 'kappa_{}'.format(name)
+        kappa_gw = parameter.Uniform(0, 10)(kappa_name)
+            
+        if psd == "SMBH-TT":
+            cpl = GWTT(log10_A=log10_Agw, kappa=kappa_gw)
+        if psd == "SMBH-General":
+            cpl = GWGeneral(log10_A=log10_Agw, kappa=kappa_gw)      
+         
         
     if psd == 'inflation':
         cpl = GWInflation(log10_A=log10_Agw)
@@ -174,7 +186,7 @@ def common_red_noise_block(psd='inflation',
 
     return crn
 
-def model_polar(psrs, upper_limit=False, bayesephem=True):
+def modelInflation(psrs, upper_limit=False, bayesephem=True):
     """
     Reads in list of enterprise Pulsar instance and returns a PTA
     instantiated with model 3A from the analysis paper:
@@ -226,6 +238,75 @@ def model_polar(psrs, upper_limit=False, bayesephem=True):
     s += common_red_noise_block(psd='inflation', prior=amp_prior, Tspan=Tspan, orf='ST')    
     s += common_red_noise_block(psd='inflation', prior=amp_prior, Tspan=Tspan, orf='VL')
     s += common_red_noise_block(psd='inflation', prior=amp_prior, Tspan=Tspan, orf='SL')
+
+    # ephemeris model
+    if bayesephem:
+        s += deterministic_signals.PhysicalEphemerisSignal(use_epoch_toas=True)
+
+    # timing model
+    s += gp_signals.TimingModel()
+
+    # set up PTA
+    pta = signal_base.PTA([s(psr) for psr in psrs])
+
+    # set white noise parameters
+    noisedict = get_noise_dict(psrlist=[p.name for p in psrs])
+    pta.set_default_params(noisedict)
+
+    return pta
+
+def modelSMBH(psrs, upper_limit=False, bayesephem=True):
+    """
+    Reads in list of enterprise Pulsar instance and returns a PTA
+    instantiated with model 3A from the analysis paper:
+
+    per pulsar:
+        1. fixed EFAC per backend/receiver system
+        2. fixed EQUAD per backend/receiver system
+        3. fixed ECORR per backend/receiver system
+        4. Red noise modeled as a power-law with 30 sampling frequencies
+        5. Linear timing model.
+
+    global:
+        1. GWB with HD correlations modeled with user defined PSD with
+        30 sampling frequencies. Available PSDs are
+        ['powerlaw', 'turnover' 'spectrum']
+        2. Optional physical ephemeris modeling.
+
+    :param psd:
+        PSD to use for common red noise signal. Available options
+        are ['powerlaw', 'turnover' 'spectrum'] 'powerlaw' is default
+        value.
+    :param gamma_common:
+        Fixed common red process spectral index value. By default we
+        vary the spectral index over the range [0, 7].
+    :param upper_limit:
+        Perform upper limit on common red noise amplitude. By default
+        this is set to False. Note that when perfoming upper limits it
+        is recommended that the spectral index also be fixed to a specific
+        value.
+    :param bayesephem:
+        Include BayesEphem model. Set to False by default
+    """
+
+    amp_prior = 'uniform' if upper_limit else 'log-uniform'
+
+    # find the maximum time span to set GW frequency sampling
+    tmin = [p.toas.min() for p in psrs]
+    tmax = [p.toas.max() for p in psrs]
+    Tspan = np.max(tmax) - np.min(tmin)
+
+    # white noise
+    s = white_noise_block(vary=False)
+
+    # red noise
+    s += red_noise_block(prior=amp_prior, Tspan=Tspan)
+
+    # common red noise block
+    s += common_red_noise_block(psd='SMBH-TT', prior=amp_prior, Tspan=Tspan, orf='TT', logA_max=-13)  
+    s += common_red_noise_block(psd='SMBH-General', prior=amp_prior, Tspan=Tspan, orf='ST', logA_max=-13)  
+    s += common_red_noise_block(psd='SMBH-General', prior=amp_prior, Tspan=Tspan, orf='VL', logA_max=-13)  
+    s += common_red_noise_block(psd='SMBH-General', prior=amp_prior, Tspan=Tspan, orf='SL', logA_max=-13)  
 
     # ephemeris model
     if bayesephem:

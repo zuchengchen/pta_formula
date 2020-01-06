@@ -1,0 +1,340 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[
+%a4paper,       % letterpaper, a4paper, a5paper
+%10pt,              % 10pt, 11pt, 12pt
+reprint,           % journal's actual layout
+%preprint,          % 12pt, single-column
+superscriptaddress,% authors with affiliations via superscripts
+amsmath,           % add AMS-Latex features
+amssymb,           % add extra AMS symbols, including amsfonts
+aps,               % aps or aip
+prl,               % prl, pra, prb, prc, prd, pre, prstab
+%showpacs,          % make PACS codes appear
+notitlepage,       % control appearance of title page
+%longbibliography,  % show  article titles in the bibliography
+floatfix,          % process floats as early as possible
+%showkeys,          % option to make keywords appear
+%titlepage,         %
+%eqsecnum,          % number equations by section
+nofootinbib,
+onecolumn
+]{revtex4-1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% load packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tensor}     % manipulate tensors
+\usepackage{graphicx}   % include figures
+\usepackage[
+colorlinks=true,        % color link
+citecolor=blue,         % cite color
+linkcolor=blue,         % link color
+urlcolor=blue           % url color
+]{hyperref}             % create hyperlinks
+\usepackage{bm}         % \bm{<text>} Bold math symbols
+\usepackage{xcolor}     % textcolor
+%\usepackage{dcolumn}    % Align table columns on decimal point
+%\usepackage{array}      % dcolumn depends on array
+\usepackage{tabulary}
+\usepackage{color}      % \textcolor{declared-color}{text}
+%\usepackage{longtable}  % large table\
+\usepackage[utf8]{inputenc} % accented characters for .bib file using XeLaTex
+\usepackage[section]{placeins} % figures processing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% new commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\nc}{\newcommand*} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% alphabet %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\nc{\al}{\alpha}
+\nc{\s}{\sigma}
+\nc{\kp}{\kappa}
+\nc{\dt}{\delta}
+\nc{\Dt}{\Delta}
+\nc{\Ld}{\Lambda}
+\nc{\p}{\partial}
+\nc{\Gm}{\Gamma}
+\nc{\om}{\omega}
+\nc{\Om}{\Omega}
+\nc{\rd}{\mathrm{d}}
+\nc{\Od}[1]{\mathcal{O}(#1)} % order operator
+\nc{\one}{\uppercase\expandafter{\romannumeral1}}
+\nc{\two}{\uppercase\expandafter{\romannumeral2}}
+\nc{\three}{\uppercase\expandafter{\romannumeral3}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% equations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\({\left(}
+\def\){\right)}
+\def\[{\left[}
+\def\]{\right]}
+\def\e{\begin{equation}}
+\def\q{\end{equation}}
+\def\m{\begin{eqnarray}}
+\def\n{\end{eqnarray}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% citations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\nc{\Eq}[1]{Eq.~\eqref{#1}}     % equation
+\nc{\Fig}[1]{Fig.~\ref{#1}}     % figure
+\nc{\Table}[1]{Table~\ref{#1}}  % table
+\nc{\Sec}[1]{Sec.~\ref{#1}}     % section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% gravitational waves %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\nc{\Msun}{M_\odot}             % solar mass
+\nc{\fpbh}{f_{\mathrm{pbh}}}    % f_pbh
+\nc{\fpbhn}{f_{\mathrm{pbh0}}}    % f_pbh
+\nc{\mR}{\mathcal{R}} % merger rate density
+\nc{\seq}{\sigma_{\mathrm{eq}}}
+\nc{\ogw}{\Omega_{\mathrm{GW}}}
+\nc{\gpcyr}{\mathrm{Gpc}^{-3}\,\mathrm{yr}^{-1}}
+\nc{\lvc}{LIGO/Virgo} % LIGO-VIRGO collaboration
+\nc{\SNR}{\mathrm{SNR}} % signal to noise ratio
+\nc{\mmin}{{m_{\mathrm{min}}}}
+\nc{\mmax}{{m_{\mathrm{max}}}}
+\nc{\Mmin}{{M_{\mathrm{min}}}}
+\nc{\fmin}{{f_{\mathrm{min}}}}
+\nc{\VT}{\mathrm{VT}}
+\nc{\rhoGW}{\rho_{\mathrm{GW}}}
+\nc{\vth}{\vec{\theta}}
+\nc{\vd}{\vec{d}}
+\nc{\vla}{\vec{\lambda}}
+\nc{\av}[1]{\langle #1 \rangle} % average bracket
+\nc{\fyr}{f_{yr}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% other %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\nc{\addref}{[\textcolor{red}{add ref}] } % placeholder of references
+\nc{\eg}{\textit{e.g.~}}
+\nc{\app}{\approx}
+\nc{\hf}{\frac{1}{2}}
+\nc{\discuss}{\textcolor{red}{Add discussion here!}}
+\nc{\red}[1]{\textcolor{red}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%% only used in this paper %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\nc{\hp}{h_+} % h plus
+\nc{\hc}{h_{\times}} % h cross
+\nc{\Oh}{\hat{\Omega}}
+\nc{\vx}{\vec{x}}
+\nc{\mh}{\hat{m}}
+\nc{\nh}{\hat{n}}
+\nc{\zh}{\hat{z}}
+\nc{\ph}{\hat{p}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% title %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Some famous formula for pulsar timing array (PTA)}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% author %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Zu-Cheng Chen}
+\email{chenzucheng@itp.ac.cn} %bingining@gmail.com
+\affiliation{CAS Key Laboratory of Theoretical Physics, 
+Institute of Theoretical Physics, Chinese Academy of Sciences,
+Beijing 100190, China}
+\affiliation{School of Physical Sciences, 
+University of Chinese Academy of Sciences, 
+No. 19A Yuquan Road, Beijing 100049, China}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% date %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+    
+
+\end{abstract}
+	
+	
+\maketitle
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Background}
+We consider a general metric
+\e 
+    g_{ab} = \eta_{ab} + h_{ab},
+\q 
+where 
+\e 
+    \eta_{ab} = \begin{pmatrix}
+    -1 & 0 & 0 & 0\\
+    0 & 1 & 0 &0\\
+    0 & 0 & 1 &0\\
+    0 & 0 & 0 & 1
+\end{pmatrix}
+\q
+is the Minkowski metric, and $h_{ab}$
+is the perturbation of the spacetime or gravitational wave (GW).
+A metric perturbation in a spatial transverse and traceless gauge has a plane
+wave expansion given by 
+\e 
+    h_{ab}(t, \vec{x}) = \sum_{A} \int_{-\infty}^{\infty} df \int d\Oh\, 
+        e^{i2\pi f(t-\Oh\cdot\vec{x})} h_{A}(f, \Oh) e_{ij}^A(\Oh),
+\q 
+where $f$ is the frequency of the GWs, $\vec{k}=2\pi f \Oh$ is the wave vector,
+$\Oh$ is a unit vector that points along the direction of travel of the waves,
+$i,j=x, y, z$ are spatial indices, and the index $A=(+,\times,b,l,x,y)$ labels polarization
+of GWs.
+The polarization tensors $e^A_{ij}(\Oh)$ are defined as
+\m 
+  e^{+}_{ij} &=& \mh_i \mh_j - \nh_i \nh_j, \\
+  e^{\times}_{ij} &=& \mh_i \nh_j + \nh_i \mh_j,\\
+  e^{b}_{ij} &=& \mh_i \mh_j + \nh_i \nh_j, \\
+  e^{l}_{ij} &=& \Oh_i \Oh_j, \\
+  e^{x}_{ij} &=& \mh_i \Oh_j + \Oh_i \mh_j, \\
+  e^{y}_{ij} &=& \nh_i \Oh_j + \Oh_i \nh_j,
+\n
+where
+\m 
+    \Oh &=& (\sin\theta \cos\phi, \sin\theta \sin\phi, \cos\theta)\\
+    \mh &=& (\sin\phi, -\cos\phi, 0),\\
+    \nh &=& (\cos\theta \cos\phi, \cos\theta \sin\phi, -\sin\theta).
+\n 
+It is easy to verify that $\Oh$, $\mh$ and $\nh$ are perpendicular to each other.
+Furthermore, the polarization tensors are normalized as
+\e 
+    e^A_{ij} e^{Bij} = 2 \dt^{AB}.
+\q 
+
+Now consider the metric perturbation from a single gravitational wave traveling
+along the $z$-axis so that $\Oh=\zh=(0,0,1)$, $\theta=0$ and $\phi=\pi/2$.
+In this case $\mh = \hat{x} = (1,0,0)$ and $\nh = \hat{y} = (0,1,0)$.
+Besides,
+\m 
+    e^{+}_{ij}(\zh) &=& \mh_i \mh_j - \nh_i \nh_j\\
+        &=& \begin{pmatrix}
+            1\\
+            0\\
+            0
+        \end{pmatrix} \(1, 0, 0\) - \begin{pmatrix}
+            0\\
+            1\\ 
+            0
+        \end{pmatrix} \(0, 1, 0\)\\
+        &=& \begin{pmatrix}
+            1 & 0 & 0\\
+            0 & 0 & 0\\
+            0 & 0 & 0
+        \end{pmatrix} - \begin{pmatrix}
+        0 & 0 & 0\\
+        0 & 1 & 0\\
+        0 & 0 & 0
+        \end{pmatrix}
+        = \begin{pmatrix}
+            1 & 0 & 0\\
+            0 & -1 & 0\\
+            0 & 0 & 0
+        \end{pmatrix},
+\n
+and
+\m 
+e^{\times}_{ij}(\zh) &=& \mh_i \nh_j + \nh_i \mh_j\\
+&=& \begin{pmatrix}
+    1\\
+    0\\
+    0
+\end{pmatrix} \(0, 1, 0\) + \begin{pmatrix}
+    0\\
+    1\\ 
+    0
+\end{pmatrix} \(1, 0, 0\)\\
+&=& \begin{pmatrix}
+    0 & 1 & 0\\
+    0 & 0 & 0\\
+    0 & 0 & 0
+\end{pmatrix} + \begin{pmatrix}
+    0 & 0 & 0\\
+    1 & 0 & 0\\
+    0 & 0 & 0
+\end{pmatrix}
+= \begin{pmatrix}
+    0 & 1 & 0\\
+    1 & 0 & 0\\
+    0 & 0 & 0
+\end{pmatrix}.
+\n
+
+The metric perturbation is given explicitly by
+\m 
+    h_{ij}(t-z) &\equiv& h_{ij}(t, \Oh=\zh)\\
+        &=& \sum_A \int_{-\infty}^{\infty} df
+        e^{i2\pi f(t-z)} h_A(f, \zh) e^A_{ij}(\zh)\\
+        &=& \sum_A h_A(f, t-z) e^A_{ij}(\zh)\\
+        &=& \sum_A h_A e^A_{ij}(\zh)
+        = \hp e^+_{ij}(\zh) + \hc e^\times_{ij}(\zh)\\
+        &=& \begin{pmatrix}
+            \hp & 0 & 0\\
+            0 & -\hp & 0\\
+            0 & 0 & 0
+        \end{pmatrix} + \begin{pmatrix}
+        0 & \hc & 0\\
+        \hc & 0 & 0\\
+        0 & 0 & 0
+    \end{pmatrix}
+= \begin{pmatrix}
+    \hp & \hc & 0\\
+    \hc & -\hp & 0\\
+    0 & 0 & 0
+\end{pmatrix}.
+\n 
+since
+\e 
+    \Oh\cdot\vx = \zh\cdot\vx = z,
+\q 
+and we have defined 
+\e
+    h_A = h_A(f, t-z) 
+        \equiv \int_{-\infty}^{\infty} df e^{i2\pi f(t-z)} h_A(f, \zh).
+\q
+Therefore the physical metric due to the perturbation is given by
+\e 
+g_{ab} = \eta_{ab} + h_{ab}(t-z) = \begin{pmatrix}
+    -1 & 0 & 0 & 0\\
+    0 & 1+\hp & \hc &0\\
+    0 & \hc & 1-\hp &0\\
+    0 & 0 & 0 & 1
+\end{pmatrix}.
+\q
+
+\section{Correlation}
+The antenna patterns are defined as
+\e 
+    F^A(\Oh) = e^A_{ij}(\Oh) \frac{\ph^i\ph^j}{2(1+\Oh\cdot\ph)}.
+\q 
+The overlap function for two pulsars are 
+\e 
+    \Gm_{ab}(|f|) = \sum_A \Gm^A_{ab}(|f|),
+\q 
+where 
+\e 
+    \Gm^A_{ab}(|f|) = \frac{3}{4\pi} \int d\Oh \(e^{2\pi i f L_a(1+\Oh\cdot\ph_a)}-1\)
+        \(e^{2\pi i f L_b(1+\Oh\cdot\ph_b)}-1\) F^A_a(\Oh) F^A_b(\Oh).
+\q 
+We now define
+\m 
+    \Gm^{TT}_{ab}(|f|) &=& \Gm^{+}_{ab}(|f|) + \Gm^{\times}_{ab}(|f|),\\
+    \Gm^{ST}_{ab}(|f|) &=& \Gm^{b}_{ab}(|f|),\\
+    \Gm^{VL}_{ab}(|f|) &=& \Gm^{x}_{ab}(|f|) + \Gm^{y}_{ab}(|f|),\\
+    \Gm^{SL}_{ab}(|f|) &=& \Gm^{l}_{ab}(|f|).
+\n 
+Then the cross-spectral density is 
+\m 
+    S_{ab}(f) &=& \frac{1}{24\pi^2f^3} \frac{1+\kappa^2}{1+\kappa^2\(\frac{f}{\fyr}\)^{-\frac{2}{3}}}
+        \[\Gm^{TT}_{ab} A_{TT}^2 \(\frac{f}{\fyr}\)^{-\frac{4}{3}}
+        +\(\Gm^{ST}_{ab} A_{ST}^2 + \Gm^{VL}_{ab} A_{VL}^2 
+            + \Gm^{SL}_{ab} A_{SL}^2\)\(\frac{f}{\fyr}\)^{-2}\]\\
+        &=& \Gm^{TT}_{ab} S_{TT} + \Gm^{ST}_{ab}S_{ST} + \Gm^{VL}_{ab} S_{VL} 
+        + \Gm^{SL}_{ab} S_{SL},
+\n 
+where
+\m 
+    S_{TT} = \frac{1}{24\pi^2f^3} \frac{1+\kappa^2}{1+\kappa^2\(\frac{f}{\fyr}\)^{-\frac{2}{3}}} A_{TT}^2 \(\frac{f}{\fyr}\)^{-\frac{4}{3}}, \\
+    S_{ST} = \frac{1}{24\pi^2f^3} \frac{1+\kappa^2}{1+\kappa^2\(\frac{f}{\fyr}\)^{-\frac{2}{3}}} A_{ST}^2 \(\frac{f}{\fyr}\)^{-2}, \\
+    S_{VL} = \frac{1}{24\pi^2f^3} \frac{1+\kappa^2}{1+\kappa^2\(\frac{f}{\fyr}\)^{-\frac{2}{3}}} A_{VL}^2 \(\frac{f}{\fyr}\)^{-2}, \\
+    S_{SL} = \frac{1}{24\pi^2f^3} \frac{1+\kappa^2}{1+\kappa^2\(\frac{f}{\fyr}\)^{-\frac{2}{3}}} A_{SL}^2 \(\frac{f}{\fyr}\)^{-2}.
+\n 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% references %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\bibliographystyle{apj}
+%\bibliography{./TTgaugeref}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

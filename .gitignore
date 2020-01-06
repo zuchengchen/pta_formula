@@ -70,3 +70,6 @@ venv.bak/
 *Notes.bib
 *.out
 *.synctex.gz
+
+# cache data
+*.data_cache
