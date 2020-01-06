@@ -1,5 +1,7 @@
-# 11yr Stochastic Analysis
+# Constrain GW polarization from NANOGrav 11 year data set
 
+* One should use enterprise from
+    https://github.com/bunnyandbear/enterprise
 
 ## Inflation model
 * number of frequency bins is set to 50 (or 30)
